@@ -70,3 +70,6 @@ def accounts():
         return str(e)
 
 create_tables()
+
+if __name__ == "__main__":
+    server.run()
