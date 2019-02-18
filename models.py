@@ -1,11 +1,11 @@
 TABLES = {}
-TABLES['users'] = (
+TABLES['_users'] = (
     "CREATE TABLE `_users` ("
     "  `uuid` int(11) NOT NULL AUTO_INCREMENT,"
-    "  `device_id` varchar(16) NOT NULL,"
+    "  `device_id` varchar(32) NOT NULL,"
     "  PRIMARY KEY (`uuid`)"
     ")")
-TABLES['groups'] = (
+TABLES['_groups'] = (
     "CREATE TABLE `_groups` ("
     "  `uuid` int(11) NOT NULL,"
     "  `guuid` int(11) NOT NULL,"
