@@ -54,7 +54,7 @@ def main():
 
 @server.route('/api/accounts', methods = ['POST'])
 def accounts():    
-    add_user = ("INSERT INTO users (device_id) VALUES (%s)")
+    add_user = ("INSERT INTO _users (device_id) VALUES (%s)")
 
     data = request.get_json()
     data_user = (data['device_id'],)
@@ -72,4 +72,4 @@ def accounts():
 create_tables()
 
 if __name__ == "__main__":
-    server.run()
+    server.run(host='0.0.0.0')
