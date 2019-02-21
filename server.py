@@ -1,15 +1,15 @@
 from models import *
 
-import mysql.connector
+import mysql.connector, time, os
 from mysql.connector import errorcode
-from flask import Flask, request
+from flask import Flask, request, jsonify
 server = Flask(__name__)
 
 def db_connect():
     config = {
         'user':'HHNAPP',
         'password':'password',
-        'host':'127.0.0.1',
+        'host':'172.28.238.10',
         'database':'HHNAPP'
     }
     conn = mysql.connector.connect(**config)
@@ -36,8 +36,9 @@ def create_tables():
             else:
                 print("OK")
         db_disconnect(c, conn)
+        return False
     except Exception as e:
-        return str(e)
+        return True
 
 
 
@@ -68,8 +69,11 @@ def accounts():
         return "device ID added!!"
     except Exception as e:
         return str(e)
-
-create_tables()
+        
+if os.environ.get("WERKZEUG_RUN_MAIN") == None:
+    print("connecting to DB...")
+    while create_tables():
+        time.sleep(1)
 
 if __name__ == "__main__":
     server.run(host='0.0.0.0')

@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  hhnapp_server:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/server.dockerfile
+    volumes:
+      - .:/data
+    depends_on:
+      - hhnapp_db
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      backend:
+        ipv4_address: 172.28.238.11
+  hhnapp_db:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/db.dockerfile
+    networks:
+      backend:
+        ipv4_address: 172.28.238.10
+    # logging:
+    #   driver: "none"
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16

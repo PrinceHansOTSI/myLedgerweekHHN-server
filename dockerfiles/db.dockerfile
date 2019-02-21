@@ -1,6 +1,6 @@
 
 # base image
-FROM mysql
+FROM mysql:latest
 
 # Add a database
 ENV MYSQL_DATABASE HHNAPP
