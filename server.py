@@ -54,7 +54,7 @@ def main():
 
 @server.route('/api/accounts', methods = ['POST'])
 def accounts():    
-    add_user = ("INSERT INTO _users (device_id) VALUES (%s)")
+    add_user = ("INSERT IGNORE INTO _users (device_id) VALUES (%s)")
 
     data = request.get_json()
     data_user = (data['device_id'],)
