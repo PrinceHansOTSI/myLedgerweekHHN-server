@@ -20,6 +20,8 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/db.dockerfile
+    ports:
+      - "127.0.0.1:3306:3306"
     networks:
       backend:
         ipv4_address: 172.28.238.10
